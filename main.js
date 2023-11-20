@@ -54,17 +54,31 @@ cakes.forEach((cake) => {
     
 })
 
-const getBtn = document.querySelector('.get-btn')
+const getBtn = document.querySelector('#get-btn')
 
-const request_cakes=()=>{
+getBtn.addEventListener('click',()=>{
     const request = new XMLHttpRequest()
-            request.open('GET','cakes.json')
+                request.open('GET','cakes.json')
+                request.setRequestHeader('Content-type','application/json')
+                request.send()
+    request.addEventListener("load",()=>{
+        const data =JSON.parse(request.response)
+                        console.log(data)
+                      
+    })
+
+})
+
+
+const request_series=()=>{
+    const request = new XMLHttpRequest()
+            request.open('GET','series.json')
             request.setRequestHeader('Content-type','application/json')
             request.send()
     
             request.addEventListener('load',()=>{
-                const data =JSON.parse(request.response)
-                console.log(data)
+                const request_series=JSON.parse(request.response)
+                console.log(request_series)
             })
      }
-     request_cakes()
+     request_series()
